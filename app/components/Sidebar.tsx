@@ -7,14 +7,13 @@ import { LogoutButton } from "./LogoutButton";
 import { LogoutButtonSocial } from "./LogoutButtonSocial";
 
 export default function Sidebar() {
+
   const [collapsed, setCollapsed] = useState(false);
 
   return <>
-    <aside className={` bg-gray-400 text-white h-screen
-        transition-all duration-300
-        ${collapsed ? "w-20" : "w-64"}
-        `}
-        >   
+  <main className={`${collapsed ? "ml-21" : "ml-65"}`} ></main>
+    <aside className={` fixed bg-gray-900 text-white h-screen
+        transition-all duration-300 ${collapsed ? "w-21" : "w-65"}`} >
                 <div className="">
                    <button  onClick={() => setCollapsed(!collapsed)}>
           <div className="cursor-pointer border:0px p-4">{collapsed ? <b>☰</b> : <b>X</b>}</div>
@@ -28,7 +27,7 @@ export default function Sidebar() {
                   />
                 </div>
       <div className="flex justify-between items-center p-4">
-        {!collapsed && <a href="/" className="font-bold cursor-pointer">Admin</a>}
+        {!collapsed && <a href="/" className="font-bold cursor-pointer">Home</a>}
        
       </div>
     {!collapsed && <Links />}
