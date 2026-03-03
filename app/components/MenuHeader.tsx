@@ -12,22 +12,16 @@ export default function MenuHeader({ session }: Props) {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
         {/* Título */}
-        <Image
+        <p className="font-bold ml-8">CENTRO INFO</p>
+        {/* <Image
           src="next.svg"
           alt="Logo"
           width={100}
           height={100}
-        />
-        <div className="text-xl md:text-2xl font-bold tracking-wide text-left">
+        /> */}
+        {/* <div className="text-xl md:text-2xl font-bold tracking-wide text-left">
           {session ? "Dashboard - Page Private" : " Page - Page Public"}
-        </div>
-
-
-        {/* Usuário */}
-        {/* {!session && (<div  className="flex items-center justify-end gap-3">
-          <button>Fazer Login</button>
-        </div>)} */}
-
+        </div> */}
 
         <div className="flex items-center justify-end gap-3">
           {session ? <>

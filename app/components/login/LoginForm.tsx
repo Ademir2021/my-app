@@ -53,6 +53,7 @@ export default function LoginForm({
                         {error}
                     </p>
                 )}
+                <Link className="text-red-500 pe-2" href={'/register'}>Registrar-seu Login</Link>
                 <div className="min-h-screenxx flex items-center justify-center p-3">
                     <button
                         onClick={() => signIn("github", { callbackUrl: '/dashboard' })}
