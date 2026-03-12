@@ -64,7 +64,7 @@ export default async function RootLayout() {
             "Projetos e Execução de redes com Fibra Òptica para Residências. Industria e na Agro-Pecuária.",
             "Saiba Mais")}
           {cards_2(
-            "Redes Ponto a Ponto viá Rádio para longas distâncias 5.8Ghz",
+            "Redes Ponto a Ponto via Rádio para longas distâncias 5.8Ghz",
             "Projeto e execução de rede PPP com Rádios 5.8Ghz inteligando escritórios á pontos distantes e de difícil acesso, com velociadades superiores á 300Mbps.",
             "Saiba Mais")}
         </div>

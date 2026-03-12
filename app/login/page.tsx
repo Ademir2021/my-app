@@ -2,14 +2,15 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { TUser } from '../models/TUser'
+import { TUser, UserRole } from '../models/TUser'
 import LoginForm from '../components/login/LoginForm'
 
 export default function LoginPage() {
   const router = useRouter()
   const [user, setUser] = useState<TUser>({
     login: '',
-    password: ''
+    password: '',
+    role:UserRole.USER
   })
   const [error, setError] = useState('')
 

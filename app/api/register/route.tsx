@@ -5,19 +5,20 @@ export async function POST(request: Request) {
   const user:TUser =  await request.json()
 
   // Fake validação
-  if (user.login !== 'admin@email.com' || user.password !== '123') {
+  if (user.login === "") {
     return NextResponse.json(
-      { error: 'Credenciais inválidas' },
+      { error: 'Favor preencher todos os campos' },
       { status: 401 }
     )
   }
 
-  const response = NextResponse.json({ success: true })  
+  const response = NextResponse.json({ success: true })
+
   response.cookies.set('token', 'abc123', {
     httpOnly: true,
-    path: '/dashboard',
+    path: '/register',
     maxAge: 60 * 60 * 24, // 1 dia
   })
-  
+  console.log(user)
   return response
 }
