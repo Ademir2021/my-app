@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PersonForm from "@/app/components/Person/PersonForm";
 import { TPerson, TypePerson, Gender, GroupPerson } from "@/app/models/TPerson";
-import { UserRole } from "@/app/models/TUser";
-
+import { TUser, UserRole } from "@/app/models/TUser";
 import { useRouter } from 'next/navigation'
+import { getUser } from "@/app/lib/auth";
 
 export default function Person() {
 
     const router = useRouter()
+    const [user, setUser] = useState<TUser | null>(null)
     const [msg, setMsg] = useState('')
     const [person, setPerson] = useState<TPerson>({
         id: 0,
@@ -54,12 +55,23 @@ export default function Person() {
         const value = e.target.value;
         setPerson(values => ({ ...values, [name]: value }))
     }
-    
+
+
+    useEffect(() => {
+        async function loadUser() {
+            const user = await getUser()
+            setUser(user)
+        }
+        loadUser()
+    }, [])
 
     async function handleSubmit(e: Event) {
         e.preventDefault()
         person.groupPerson = parseInt(person.groupPerson)
-         const res = await fetch('/api/person', {
+        person.user.id = user?.id || 0
+        person.user.login = user?.login || ""
+        person.user.role = user?.role || UserRole.USER
+        const res = await fetch('/api/person', {
             method: 'POST',
             body: JSON.stringify(person),
         })
@@ -73,7 +85,7 @@ export default function Person() {
     }
 
     return <>
-        <pre>{JSON.stringify(person.address.zipCode?.id)}</pre>
+        {/* <pre>{user ? JSON.stringify(user) : <p>Aguardando user ...</p>}</pre> */}
         <PersonForm
             handleChange={handleChange}
             handleSubmit_={handleSubmit}

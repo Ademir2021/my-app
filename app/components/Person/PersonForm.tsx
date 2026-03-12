@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { cadastroSchema } from "../../lib/schema"
 import { buscarCNPJ } from "../../lib/receita"
 import { z } from "zod"
-import { TPerson, Gender, GroupPerson } from "@/app/models/TPerson"
+import { TPerson, Gender, GroupPerson, TypePerson } from "@/app/models/TPerson"
 
 type FormData = z.infer<typeof cadastroSchema>
 
@@ -25,7 +25,7 @@ export default function PersonForm({
   msg,
   setChildren }: Props) {
 
-  const [step, setStep] = useState(4)
+  const [step, setStep] = useState(1)
 
   const {
     register,
@@ -95,7 +95,7 @@ export default function PersonForm({
         {["Tipo", "Dados", "Contato", "Endereço"].map((item, index) => (
           <div key={index}
             className={`flex-1 text-center font-semibold 
-              ${step === index + 1 ? "text-blue-600" : "text-gray-400"}`}>
+${step === index + 1 ? "text-blue-600" : "text-gray-400"}`}>
             {item}
           </div>
         ))}
@@ -108,8 +108,8 @@ export default function PersonForm({
           onChange={handleChange}>
           <option disabled value=''>Selecione o Grupo  ...</option>
           <option value={GroupPerson.CLIENTE}>Cliente</option>
-          <option value={GroupPerson.FORNECEDOR}>Fornecedor</option>
           <option value={GroupPerson.FUNCIONARIO}>Funcionário</option>
+          <option value={GroupPerson.FORNECEDOR}>Fornecedor</option>
           <option value={GroupPerson.TRANSPORTADOR}>Transportador</option>
         </select> </>}
 
@@ -117,17 +117,34 @@ export default function PersonForm({
         {/* STEP 1 */}
         {step === 1 && (
           <div className="flex gap-4">
-            <button type="button"
-              onClick={() => setValue("tipoPessoa", "pf")}
+
+            <button
+              type="button"
+              onClick={() => {
+                setValue("tipoPessoa", "pf")
+                setChildren({
+                  ...children,
+                  typePerson: TypePerson.FISICA
+                })
+              }}
               className={`flex-1 p-3 rounded-lg border 
-              ${tipoPessoa === "pf" ? "bg-blue-600 text-white" : ""}`}>
+${tipoPessoa === "pf" ? "bg-blue-600 text-white" : ""}`}
+            >
               Pessoa Física
             </button>
 
-            <button type="button"
-              onClick={() => setValue("tipoPessoa", "pj")}
+            <button
+              type="button"
+              onClick={() => {
+                setValue("tipoPessoa", "pj")
+                setChildren({
+                  ...children,
+                  typePerson: TypePerson.JURIDICA
+                })
+              }}
               className={`flex-1 p-3 rounded-lg border 
-              ${tipoPessoa === "pj" ? "bg-blue-600 text-white" : ""}`}>
+${tipoPessoa === "pj" ? "bg-blue-600 text-white" : ""}`}
+            >
               Pessoa Jurídica
             </button>
           </div>
@@ -203,7 +220,6 @@ export default function PersonForm({
               onChange={handleChange}
               placeholder="Razão Social"
               className="w-full p-3 border rounded-lg" />
-
             <input {...register("nomeFantasia")}
               type="text"
               placeholder="Nome Fantasia"
@@ -342,7 +358,6 @@ export default function PersonForm({
               className="px-4 py-2 bg-green-600 text-white rounded-lg">
               Finalizar
             </button>
-
           )}
         </div>
 

@@ -13,6 +13,7 @@
     "axios": "^1.13.6",
     "cpf-cnpj-validator": "^1.0.3",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.3",
     "next": "16.1.6",
     "next-auth": "^4.24.13",
     "react": "19.2.3",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/js-cookie": "^3.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
