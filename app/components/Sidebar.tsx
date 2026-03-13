@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Links from "./Menu";
-// import Image from "next/image";
+
 import { LogoutButton } from "./LogoutButton";
 import { LogoutButtonSocial } from "./LogoutButtonSocial";
 
@@ -11,21 +11,16 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(true);
 
   return <>
-    <main className={`${collapsed ? "ml-12" : "ml-65"}`} ></main>
-    <aside className={` fixed bg-gray-900 text-white h-screen
-        transition-all duration-300 ${collapsed ? "w-12" : "w-65"}`} >
+    <aside className={`fixed top-0 left-0 z-50 h-screen bg-gray-900 text-white
+       overflow-y-auto transition-transform duration-300 ${collapsed ? "w-12" : "w-65"}`} >
       <div className="">
         <button onClick={() => setCollapsed(!collapsed)}>
           <div className="cursor-pointer border:0px p-4">{collapsed ? <b>☰</b> : <b>X</b>}</div>
         </button>
       </div>
-      {/* <div className="p-3"><Image
-        src="next.svg"
-        alt="Logo"
-        width={100}
-        height={100}
-      />
-      </div> */}
+          {/* Título */}
+       { !collapsed && <p className="ml-4 text-xl font-semibold tracking-[5px] ">CENTROINFO</p>}
+
       <div className="flex justify-between items-center p-4">
         {!collapsed && <a href="/" className="font-bold cursor-pointer">Home</a>}
 
@@ -33,9 +28,10 @@ export default function Sidebar() {
       {!collapsed && <Links />}
       {!collapsed && <div className="flex-3 p-6 ">
         <LogoutButton />
-        <hr></hr>
+        <hr/>
         <LogoutButtonSocial />
       </div>}
     </aside>
+    {/* </main> */}
   </>
 }

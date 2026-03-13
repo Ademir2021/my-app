@@ -34,7 +34,6 @@ export default async function RootLayout() {
     <div className="flex min-h-screen">
       <Sidebar />
       <main className="min-h-screen flex flex-col w-326 items-center justify-center bg-gray-800 text-white px-4 py-10">
-
         {/* Título */}
         <div className="text-center mb-10 max-w-2xl">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">

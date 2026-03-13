@@ -1,14 +1,24 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Menu() {
 
-  const styles_links = "block px-2 py-2 rounded-lg text-white-600 hover:bg-gray-600 hover:text-white-200 font-medium transition duration-200"
+  const styles_links = "block px-2 py-2 rounded-lg text-white-600 hover:bg-gray-600 hover:text-white-200 font-bold transition duration-200"
 
   return (
     <nav className="px-4 py-6">
-      <span className="text-2xl font-bold text-white-600 block mb-8">
-        Menu-Web
-      </span>
+<li className="flex items-center gap-1 mb-5 font-bold">
+  <span>BR</span>
+  <Image
+    src="/globe.svg"
+    alt="Logo"
+    color='white'
+    width={26}
+    height={26}
+    title="BR"
+  />
+</li>
+  <hr/>
       <ul className="flex flex-col gap-4">
         <li>
           <Link
@@ -16,15 +26,15 @@ export default function Menu() {
             className={styles_links}
           >DashBoard</Link>
         </li>
-        <hr/>
+        <hr />
         <li>
           <Link
             href="/perfil"
             className={styles_links}
           >Perfil</Link>
         </li>
-        <hr/>
-         <li>
+        <hr />
+        <li>
           <Link
             href="/about"
             className={styles_links}

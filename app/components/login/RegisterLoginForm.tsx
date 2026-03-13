@@ -31,7 +31,7 @@ export default function RegisterLoginForm({
   }
 
   return (
-    <div className="min-h-screen text-black flex items-center justify-center bg-gray-600 p-4">
+    <div className="min-h-screen text-black flex items-center justify-center bg-gray-800 p-4">
       <div className="w-full max-w-4xl bg-gray-800 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
 
         {/* Lateral Esquerda - Progresso */}

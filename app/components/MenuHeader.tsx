@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 
 type Props = {
@@ -10,19 +9,8 @@ export default function MenuHeader({ session }: Props) {
   return <>
     <header className="sticky top-0 z-50 bg-gray-900 text-white shadow-md px-4 py-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-
         {/* Título */}
-        <p className="font-bold ml-8">CENTRO INFO</p>
-        {/* <Image
-          src="next.svg"
-          alt="Logo"
-          width={100}
-          height={100}
-        /> */}
-        {/* <div className="text-xl md:text-2xl font-bold tracking-wide text-left">
-          {session ? "Dashboard - Page Private" : " Page - Page Public"}
-        </div> */}
-
+        <p className="ml-10 text-xl font-semibold tracking-[5px] ">CENTROINFO</p>
         <div className="flex items-center justify-end gap-3">
           {session ? <>
             <div className="text-right">
@@ -39,8 +27,6 @@ export default function MenuHeader({ session }: Props) {
           </>
          : <Link className="font-bold" href={"/login"}>Fazer Login</Link> }
         </div>
-
-
       </div>
     </header>
   </>

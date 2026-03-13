@@ -1,36 +1,49 @@
 import { TUser } from '@/app/models/TUser'
 import { NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
+import { API_URL }  from '@/app/lib/auth'
 
 export async function POST(request: Request) {
 
-  const user:TUser =  await request.json()
+  const user: TUser = await request.json()
 
-  // Fake validação
-  if (user.login !== 'admin@email.com' || user.password !== '123') {
+  // chama API REST
+  const apiResponse = await fetch(`${API_URL}auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+  })
+
+  if (!apiResponse.ok) {
     return NextResponse.json(
-      { error: 'Credenciais inválidas' },
+      { error: "Credenciais inválidas" },
       { status: 401 }
     )
   }
 
-  // Dados que irão para dentro do token
-  const payload = {
-    id:1,
-    login: user.login,
-    role:user.role
+  const apiUser = await apiResponse.json()
+
+  // dados que irão no token
+  const payload: TUser = {
+    id: apiUser.id,
+    login: apiUser.login,
+    role: apiUser.token,
+    token: apiUser.token
   }
 
-  // Cria token
-  const token = jwt.sign(payload, process.env.JWT_SECRET! )
+  const token = jwt.sign(payload, process.env.JWT_SECRET!, {
+    expiresIn: "1d"
+  })
 
   const response = NextResponse.json({ success: true })
 
   response.cookies.set("token", token, {
     httpOnly: true,
-    path: '/',
-    maxAge: 60 * 60 * 24, // 1 dia
+    path: "/",
+    maxAge: 60 * 60 * 24
   })
-  
+
   return response
 }

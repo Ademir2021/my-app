@@ -1,8 +1,9 @@
 export type TUser = {
     id?:number
     login:string | any
-    password:string
+    password?:string
     role:UserRole
+    token:string
 }
 
 export enum UserRole  {

@@ -6,3 +6,5 @@ export async function getUser() {
     const data = await res.json()
     return data.user
 }
+
+export const API_URL = process.env.API_URL

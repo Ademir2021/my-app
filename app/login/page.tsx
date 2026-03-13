@@ -10,7 +10,8 @@ export default function LoginPage() {
   const [user, setUser] = useState<TUser>({
     login: '',
     password: '',
-    role:UserRole.USER
+    role:UserRole.USER,
+    token:''
   })
   const [error, setError] = useState('')
 

@@ -11,11 +11,9 @@ const session:any = await getServerSession()
 
   return <>
     <MenuHeader session={session} />
-    <div className="flex min-h-screen">
+      <main className="flex-1 ml-12 p-2 min-h-screen bg-gray-900 text-white">
       <Sidebar />
-      <main className="flex-1 p-2 bg-gray-700 text-white">
         {children}
       </main>
-    </div>
   </>
 }
